@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5a8a6a" />
+  <title>Health Hands - Masajes &amp; Bienestar</title>
+  <meta name="description" content="Experience tranquility and rejuvenation with our premium massage services." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ee;
+      --fg: #2a2219;
+      --card: #faf9f7;
+      --card-fg: #2a2219;
+      --primary: #4a7c5c;
+      --primary-fg: #faf5ef;
+      --secondary: #efe9e1;
+      --secondary-fg: #3a3127;
+      --muted: #efe9e1;
+      --muted-fg: #7a7166;
+      --accent: #b89e6a;
+      --border: #e4ded6;
+      --font-sans: 'Lato', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Brand / Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;                 /* espacio entre icono y texto */
+}
+
+.brand img {
+  height: 1.6rem;              /* MISMA altura visual que el texto */
+  width: auto;
+  display: block;
+}
+
+.brand .logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;           /* controla el tamaño de ambos */
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;              /* clave para que coincida con el SVG */
+}
+
+.brand .logo:hover {
+  opacity: 0.85;
+}
+
+.divider-logo {
+  width: 2.1rem;
+  height: auto;
+  display: block;
+}
+
+/* Logo blanco */
+.divider-logo.light {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+
+
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============ LANGUAGE SELECTOR ============ */
+    #language-selector {
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #language-selector .bg-image {
+      position: absolute; inset: 0;
+      background: url('images/spa-welcome.jpg') center/cover no-repeat;
+    }
+    #language-selector .overlay {
+      position: absolute; inset: 0;
+      background: rgba(45, 74, 62, 0.70);
+    }
+    #language-selector .content {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2rem; padding: 1.5rem; text-align: center;
+    }
+    #language-selector .divider-row {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    #language-selector .divider-line {
+      width: 2.5rem; height: 1px; background: rgba(200, 219, 190, 0.4);
+    }
+    #language-selector .divider-row svg {
+      width: 1.75rem; height: 1.75rem; color: #c8dbbe;
+    }
+    #language-selector h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 300; letter-spacing: 0.05em;
+      color: #f0f5eb;
+    }
+    #language-selector .accent-line {
+      width: 5rem; height: 1px; background: #a8c89a; margin: 0.75rem auto 0;
+    }
+    #language-selector .welcome-text {
+      font-size: 0.875rem; font-weight: 300;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(200, 219, 190, 0.7);
+    }
+    #language-selector .btn-row {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      #language-selector .btn-row { flex-direction: row; gap: 1.5rem; }
+    }
+    #language-selector .lang-btn {
+      border: 1px solid rgba(168, 200, 154, 0.3);
+      background: rgba(58, 94, 76, 0.4);
+      backdrop-filter: blur(4px);
+      border-radius: 6px;
+      padding: 1.5rem 3.5rem;
+      transition: all 0.3s;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    }
+    #language-selector .lang-btn:hover {
+      border-color: rgba(168, 200, 154, 0.6);
+      background: rgba(58, 94, 76, 0.6);
+    }
+    #language-selector .lang-btn .label {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 300;
+      letter-spacing: 0.05em; color: #f0f5eb;
+    }
+    #language-selector .lang-btn .sub {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(200, 219, 190, 0.6);
+    }
+    #language-selector .helper {
+      font-size: 0.875rem; font-weight: 300;
+      color: rgba(200, 219, 190, 0.4);
+    }
+
+    /* ============ HEADER ============ */
+    #site-header {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(250, 249, 247, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(228, 222, 214, 0.5);
+    }
+    #site-header .inner {
+      max-width: 72rem; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+    #site-header .logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 300;
+      letter-spacing: 0.05em; color: var(--fg);
+    }
+    #site-header nav { display: none; align-items: center; gap: 2rem; }
+    @media (min-width: 768px) { #site-header nav { display: flex; } }
+    #site-header nav a, #site-header nav button.nav-link {
+      font-size: 0.875rem; letter-spacing: 0.05em;
+      color: var(--muted-fg); transition: color 0.2s;
+    }
+    #site-header nav a:hover, #site-header nav button.nav-link:hover {
+      color: var(--fg);
+    }
+    #site-header .switch-lang-btn {
+      border: 1px solid var(--border);
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    #site-header .switch-lang-btn:hover {
+      border-color: var(--primary); color: var(--fg);
+    }
+
+    /* Mobile hamburger */
+    .hamburger { display: flex; flex-direction: column; gap: 6px; }
+    @media (min-width: 768px) { .hamburger { display: none; } }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--fg); transition: 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-3.5px) rotate(-45deg); }
+
+    /* Mobile menu */
+    #mobile-menu {
+      display: none; flex-direction: column; gap: 1rem;
+      padding: 1.5rem; border-top: 1px solid rgba(228,222,214,0.5);
+      background: var(--card);
+    }
+    #mobile-menu.open { display: flex; }
+    @media (min-width: 768px) { #mobile-menu { display: none !important; } }
+    #mobile-menu a, #mobile-menu button.nav-link {
+      font-size: 0.875rem; letter-spacing: 0.05em;
+      color: var(--muted-fg); text-align: left;
+    }
+
+    /* ============ HERO ============ */
+    #hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #hero .bg {
+      position: absolute; inset: 0;
+      background: url('images/spa-hero.jpg') center/cover no-repeat;
+    }
+    #hero .overlay {
+      position: absolute; inset: 0;
+      background: rgba(42, 34, 25, 0.6);
+    }
+    #hero .content {
+      position: relative; z-index: 2;
+      max-width: 48rem; margin: 0 auto; padding: 1.5rem;
+      text-align: center;
+    }
+    #hero .accent-line {
+      width: 4rem; height: 1px; background: var(--accent);
+      margin: 0 auto 1.5rem;
+    }
+    #hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 300; letter-spacing: 0.05em;
+      line-height: 1.15; color: var(--primary-fg);
+      text-wrap: balance;
+    }
+    #hero p {
+      max-width: 36rem; margin: 1.5rem auto 0;
+      font-size: clamp(0.875rem, 2vw, 1.125rem);
+      font-weight: 300; line-height: 1.6;
+      color: rgba(250, 245, 239, 0.8);
+      text-wrap: pretty;
+    }
+    #hero .btn-row {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      #hero .btn-row { flex-direction: row; justify-content: center; }
+    }
+    #hero .btn-primary {
+      background: var(--primary); color: var(--primary-fg);
+      padding: 0.75rem 2rem; border-radius: 2px;
+      font-size: 0.875rem; letter-spacing: 0.1em;
+      text-transform: uppercase; transition: background 0.2s;
+    }
+    #hero .btn-primary:hover { background: rgba(74, 124, 92, 0.9); }
+    #hero .btn-secondary {
+      border: 1px solid rgba(250, 245, 239, 0.3);
+      color: var(--primary-fg);
+      padding: 0.75rem 2rem; border-radius: 2px;
+      font-size: 0.875rem; letter-spacing: 0.1em;
+      text-transform: uppercase; transition: background 0.2s;
+    }
+    #hero .btn-secondary:hover { background: rgba(250, 245, 239, 0.1); }
+
+    /* ============ SERVICES ============ */
+    #services { background: var(--card); padding: 6rem 0; }
+    .section-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .section-header .line {
+      width: 3rem; height: 1px; background: var(--primary); margin: 0 auto 1rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 300; letter-spacing: 0.05em;
+      color: var(--fg); text-wrap: balance;
+    }
+    .section-header p {
+      margin-top: 1rem; color: var(--muted-fg); text-wrap: pretty;
+    }
+
+    .services-grid {
+      max-width: 72rem; margin: 0 auto; padding: 0 1.5rem;
+      display: grid; gap: 2rem;
+    }
+    @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .service-card {
+      overflow: hidden; border-radius: 2px;
+      border: 1px solid var(--border); background: var(--bg);
+      transition: box-shadow 0.3s;
+    }
+    .service-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .service-card .img-wrap {
+      position: relative; height: 12rem; overflow: hidden;
+    }
+    .service-card .img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .service-card:hover .img-wrap img { transform: scale(1.05); }
+    .service-card .img-wrap .dim {
+      position: absolute; inset: 0; background: rgba(42,34,25,0.2);
+    }
+    .service-card .body { padding: 1.5rem; }
+    .service-card .top-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem; font-weight: 500; color: var(--fg);
+    }
+    .service-card .duration {
+      background: var(--secondary); color: var(--muted-fg);
+      padding: 0.25rem 0.5rem; border-radius: 2px;
+      font-size: 0.75rem; letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .service-card .desc {
+      margin-top: 0.75rem; font-size: 0.875rem;
+      line-height: 1.6; color: var(--muted-fg);
+    }
+
+    /* ============ MENU / PDF SECTION ============ */
+    #menu { background: var(--bg); padding: 6rem 0; }
+    .menu-grid {
+      max-width: 52rem; margin: 0 auto; padding: 0 1.5rem;
+      display: grid; gap: 2rem;
+    }
+    /* Center menu cards when there is only 1 */
+.menu-grid.single {
+  max-width: 520px;          /* opcional: que no se vea demasiado ancho */
+  margin: 0 auto;
+  justify-items: center;     /* centra el item dentro del grid */
+}
+
+.menu-grid.single .menu-card {
+  width: 100%;
+}
+
+/* Bonus: si el navegador soporta :has(), lo hace automático sin JS */
+@supports selector(:has(*)) {
+  .menu-grid:has(> .menu-card:only-child) {
+    max-width: 520px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  .menu-grid:has(> .menu-card:only-child) .menu-card {
+    width: 100%;
+  }
+}
+
+    @media (min-width: 768px) { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .menu-card {
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 2rem; border-radius: 2px;
+      border: 1px solid var(--border); background: var(--card);
+      transition: box-shadow 0.3s;
+      min-height: 220px;
+    }
+    .menu-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .menu-card .icon-box {
+      width: 3rem; height: 3rem; border-radius: 2px;
+      background: rgba(74, 124, 92, 0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .menu-card .icon-box svg { width: 1.5rem; height: 1.5rem; color: var(--primary); }
+    .menu-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem; font-weight: 500; color: var(--fg);
+    }
+    .menu-card .desc {
+      margin-top: 0.75rem; font-size: 0.875rem;
+      line-height: 1.6; color: var(--muted-fg);
+    }
+    .menu-card .cta {
+      margin-top: 1.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.05em; color: var(--primary);
+      transition: color 0.2s;
+    }
+    .menu-card .cta:hover { color: rgba(74, 124, 92, 0.8); }
+    .menu-card .cta svg { width: 1rem; height: 1rem; }
+
+    /* ============ FOOTER ============ */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--card); padding: 3rem 0;
+      text-align: center;
+    }
+    footer .name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 300;
+      letter-spacing: 0.05em; color: var(--fg);
+    }
+    footer .tagline {
+      margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted-fg);
+    }
+    footer .divider {
+      width: 3rem; height: 1px; background: var(--border);
+      margin: 1.5rem auto;
+    }
+    footer .copy {
+      font-size: 0.75rem; color: rgba(122, 113, 102, 0.6);
+    }
+
+    /* ============ WHATSAPP BUTTON ============ */
+    #whatsapp-btn {
+      position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 50;
+      width: 3.5rem; height: 3.5rem; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s;
+    }
+    #whatsapp-btn:hover { transform: scale(1.1); }
+    #whatsapp-btn svg { width: 1.75rem; height: 1.75rem; }
+
+    /* ============ HIDDEN ============ */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== LANGUAGE SELECTOR ===== -->
+  <div id="language-selector">
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    <div class="content">
+     <div class="divider-row">
+  <div class="divider-line"></div>
+
+ <img
+  src="images/logo.svg"
+  alt="Health Hands logo"
+  class="divider-logo light"
+/>
+
+
+  <div class="divider-line"></div>
+</div>
+
+      <div>
+        <h1>Health Hands</h1>
+        <div class="accent-line"></div>
+      </div>
+      <p class="welcome-text">Bienvenido &middot; Welcome</p>
+      <div class="btn-row">
+        <button class="lang-btn" onclick="selectLanguage('es')">
+          <span class="label">Espa&ntilde;ol</span>
+          <span class="sub">Spanish</span>
+        </button>
+        <button class="lang-btn" onclick="selectLanguage('en')">
+          <span class="label">English</span>
+          <span class="sub">Ingl&eacute;s</span>
+        </button>
+      </div>
+      <p class="helper">Selecciona tu idioma / Select your language</p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN SITE (hidden until language is chosen) ===== -->
+  <div id="site" class="hidden">
+
+    <!-- HEADER -->
+    <header id="site-header">
+      <div class="inner">
+        <div class="brand">
+  <img src="images/logo.svg" alt="Health Hands logo">
+  <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    Health Hands
+  </button>
+</div>
+
+        <nav>
+          <button class="nav-link" onclick="openWhatsApp()" id="nav-contact"></button>
+          <button class="switch-lang-btn" onclick="toggleLanguage()" id="nav-switch"></button>
+        </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div id="mobile-menu">
+        <button class="nav-link" onclick="scrollTo('services'); closeMobile()" id="mob-services"></button>
+        <button class="nav-link" onclick="scrollTo('menu'); closeMobile()" id="mob-menu"></button>
+        <button class="nav-link" onclick="openWhatsApp(); closeMobile()" id="mob-contact"></button>
+        <button class="switch-lang-btn" onclick="toggleLanguage(); closeMobile()" id="mob-switch" style="width:fit-content"></button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="bg"></div>
+      <div class="overlay"></div>
+      <div class="content">
+        <div class="accent-line"></div>
+        <h1 id="hero-title"></h1>
+        <p id="hero-subtitle"></p>
+        <div class="btn-row">
+          <!-- NOTE: this will work because scrollTo() is global, and this section exists -->
+          <a class="btn-primary" id="hero-cta" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="btn-secondary" id="hero-cta2" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-header">
+        <div class="line"></div>
+        <h2 id="services-title"></h2>
+        <p id="services-subtitle"></p>
+      </div>
+      <div class="services-grid" id="services-grid">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <!-- MENU / PDF -->
+    <section id="menu">
+      <div class="section-header">
+        <div class="line"></div>
+        <h2 id="menu-title"></h2>
+        <p id="menu-subtitle"></p>
+      </div>
+      <div class="menu-grid" id="menu-grid">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="name">Health Hands</p>
+      <p class="tagline" id="footer-tagline"></p>
+      <div class="divider"></div>
+      <p class="copy">&copy; <span id="footer-year"></span> Health Hands. <span id="footer-rights"></span></p>
+    </footer>
+
+    <!-- WHATSAPP -->
+    <a id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+      <svg viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958A15.9 15.9 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.32 22.616c-.39 1.1-1.932 2.012-3.186 2.278-.86.18-1.98.324-5.754-1.236-4.832-2-7.936-6.9-8.176-7.22-.23-.32-1.932-2.576-1.932-4.916 0-2.34 1.222-3.49 1.656-3.968.39-.432 1.028-.644 1.64-.644.198 0 .376.01.536.018.47.02.706.048 1.016.788.388.926 1.332 3.266 1.448 3.504.118.238.236.556.076.876-.15.328-.282.474-.52.746-.238.272-.464.48-.702.774-.218.258-.464.534-.196 1.004.268.462 1.192 1.968 2.56 3.188 1.762 1.572 3.246 2.058 3.708 2.286.47.228.74.19 1.012-.114.278-.31 1.184-1.378 1.502-1.852.31-.474.628-.39 1.06-.234.436.152 2.77 1.308 3.244 1.544.474.238.79.354.908.554.116.198.116 1.152-.274 2.264z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    /* ============ TRANSLATIONS ============ */
+    const translations = {
+      es: {
+        nav: { services: "Servicios", menu: "Menú", contact: "Contacto", switchLang: "English" },
+        hero: {
+          title: "Tu Refugio de Paz y Bienestar",
+          subtitle: "Descubre el equilibrio perfecto entre cuerpo y mente con nuestros masajes terapéuticos y relajantes.",
+          cta: "Ver Servicios",
+          ctaSecondary: "Reservar por WhatsApp"
+        },
+        services: {
+          title: "Nuestros Servicios",
+          subtitle: "Cada masaje es una experiencia única de relajación y bienestar",
+          items: [
+            {
+              title: "Masaje Descontracturante / Tejido Profundo",
+              description:
+                "Terapia diseñada para liberar tensión muscular profunda con técnicas firmes y focalizadas. Ayuda a disminuir dolor muscular, eliminar contracturas y recuperar movilidad y flexibilidad. Mejora la circulación y favorece una sensación renovada de equilibrio y bienestar.",
+              duration: "60 min",
+              prices: { laRopa: 750, playaBlanca: 950, special2Plus: 800 }
+            },
+            {
+              title: "Masaje Holístico",
+              description:
+                "Terapia integrativa para armonizar cuerpo, mente y emociones mediante movimientos suaves, fluidos y delicados. Reduce estrés y ansiedad, favorece el descanso, apoya el drenaje de líquidos, mejora la circulación y potencia la hidratación de la piel, dejando sensación de ligereza y renovación.",
+              duration: "45 min",
+              prices: { laRopa: 600, playaBlanca: 850, special2Plus: 700 }
+            },
+            {
+              title: "Masaje Terapéutico del Nervio Ciático",
+              description:
+                "Enfocado en liberar tensión en músculos relacionados con el nervio ciático (zona lumbar, glúteos, isquiotibiales y gemelos). La sesión progresa de técnicas suaves a maniobras más profundas, trabajando especialmente el piriforme y áreas circundantes para aliviar compresión y rigidez.",
+              duration: "90 min",
+              prices: { laRopa: 850, playaBlanca: 1000, special2Plus: 900 }
+            },
+            {
+              title: "Masaje de Drenaje Linfático",
+              description:
+                "Terapia suave que estimula el sistema linfático con técnicas lentas, rítmicas y precisas. Ayuda a eliminar toxinas y exceso de líquidos, reducir inflamación, mejorar circulación y promover ligereza y equilibrio; favorece recuperación y fortalece el sistema inmunológico.",
+              duration: "60 min",
+              prices: { laRopa: 750, playaBlanca: 950, special2Plus: 800 }
+            },
+            {
+              title: "Masaje Shiatsu en Silla",
+              description:
+                "Técnica tradicional japonesa en silla especializada. Presiones rítmicas y sostenidas con dedos, palmas y codos en puntos energéticos. Estimula el flujo de energía (Ki/Chi), libera bloqueos, reduce estrés y ansiedad, favorece el descanso y contribuye a una digestión saludable.",
+              duration: "40 min",
+              prices: { laRopa: 600, playaBlanca: 850, special2Plus: 700 }
+            }
+          ]
+        },
+        menuSection: {
+          title: "Nuestros Menús",
+          subtitle: "Descarga nuestros menús completos con precios y paquetes",
+          cards: [
+            { title: "Menú de Servicios", description: "Consulta el menú completo (Español).", cta: "Ver Menú" },
+          ]
+        },
+        footer: { tagline: "Tu espacio de paz y bienestar", rights: "Todos los derechos reservados." },
+        whatsapp: { message: "Hola! Me gustaría obtener información sobre sus servicios de masaje y hacer una reservación." }
+      },
+      en: {
+        nav: { services: "Services", menu: "Menu", contact: "Contact", switchLang: "Español" },
+        hero: {
+          title: "Your Haven of Peace & Wellness",
+          subtitle: "Discover the perfect balance between body and mind with our therapeutic and relaxing massages.",
+          cta: "View Services",
+          ctaSecondary: "Book via WhatsApp"
+        },
+        services: {
+          title: "Our Services",
+          subtitle: "Each massage is a unique experience of relaxation and well-being",
+          items: [
+            {
+              title: "Deep Tissue / Muscle Release Massage",
+              description:
+                "Designed to release deep muscle tension using firm, targeted techniques. Helps reduce muscle pain, ease tightness, and restore natural mobility and flexibility. Improves circulation and leaves you feeling renewed and balanced.",
+              duration: "60 min",
+              prices: { laRopa: 750, playaBlanca: 950, special2Plus: 800 }
+            },
+            {
+              title: "Holistic Massage",
+              description:
+                "An integrative therapy to harmonize body, mind, and emotions through gentle, fluid movements. Helps reduce stress and anxiety, supports better rest, encourages natural fluid drainage, improves circulation, and enhances skin hydration—leaving a light, refreshed feeling.",
+              duration: "45 min",
+              prices: { laRopa: 600, playaBlanca: 850, special2Plus: 700 }
+            },
+            {
+              title: "Sciatic Nerve Therapeutic Massage",
+              description:
+                "Focused on releasing tension in areas associated with the sciatic nerve (lower back, glutes, hamstrings, calves). The session progresses from gentle techniques to deeper work—especially around the piriformis and surrounding areas—to relieve compression and stiffness.",
+              duration: "90 min",
+              prices: { laRopa: 850, playaBlanca: 1000, special2Plus: 900 }
+            },
+            {
+              title: "Lymphatic Drainage Massage",
+              description:
+                "A gentle therapy that stimulates the lymphatic system with slow, rhythmic, precise techniques. Helps eliminate toxins and excess fluids, reduce inflammation, improve circulation, and promote a light, balanced sensation—supporting recovery and immune function.",
+              duration: "60 min",
+              prices: { laRopa: 750, playaBlanca: 950, special2Plus: 800 }
+            },
+            {
+              title: "Chair Shiatsu Massage",
+              description:
+                "Traditional Japanese technique performed on a specialized chair. Rhythmic, sustained pressure using fingers, palms, and elbows on specific energy points. Stimulates natural energy flow (Ki/Chi), releases blockages, reduces stress, supports better rest, and may aid healthy digestion.",
+              duration: "40 min",
+              prices: { laRopa: 600, playaBlanca: 850, special2Plus: 700 }
+            }
+          ]
+        },
+        menuSection: {
+          title: "Our Menus",
+          subtitle: "Download our complete menus with prices and packages",
+          cards: [
+            { title: "Menu (English)", description: "View the full menu (English).", cta: "View Menu" },
+          ]
+        },
+        footer: { tagline: "Your space of peace and wellness", rights: "All rights reserved." },
+        whatsapp: { message: "Hello! I would like to get information about your massage services and make a reservation." }
+      }
+    };
+
+    const serviceImages = [
+      "images/massage-relaxing.jpg",
+      "images/hot-stones.jpg",
+      "images/hot-stones.jpg",
+      "images/massage-relaxing.jpg",
+      "images/massage-relaxing.jpg",
+      "images/hot-stones.jpg"
+    ];
+
+    // ✅ PDF links by language (uses your Google Drive links)
+    const pdfLinksByLang = {
+      en: [
+        "https://drive.google.com/file/d/1jqPRcFLnsel1-1v1Z2wVE1WX9A6YDT_P/view?usp=sharing"
+      ],
+      es: [
+        "https://drive.google.com/file/d/1LxN0P4CgqWgjncdmGlrev5f_X6ObMNAI/view?usp=sharing"
+      ]
+    };
+
+    let currentLang = "es";
+
+    /* ============ FUNCTIONS ============ */
+    function selectLanguage(lang) {
+      currentLang = lang;
+      document.getElementById("language-selector").classList.add("hidden");
+      document.getElementById("site").classList.remove("hidden");
+      renderSite();
+      // optional: scroll top after language select
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "es" ? "en" : "es";
+      renderSite();
+    }
+
+    function getWhatsAppUrl() {
+      var t = translations[currentLang];
+      return "https://wa.me/5217551135683?text=" + encodeURIComponent(t.whatsapp.message);
+    }
+
+    function openWhatsApp() {
+      window.open(getWhatsAppUrl(), "_blank");
+    }
+
+    function scrollTo(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function toggleMobile() {
+      document.getElementById("hamburger").classList.toggle("open");
+      document.getElementById("mobile-menu").classList.toggle("open");
+    }
+
+    function closeMobile() {
+      document.getElementById("hamburger").classList.remove("open");
+      document.getElementById("mobile-menu").classList.remove("open");
+    }
+
+    function renderSite() {
+      var t = translations[currentLang];
+
+      /* Nav */
+      document.getElementById("nav-contact").textContent = t.nav.contact;
+      document.getElementById("nav-switch").textContent = t.nav.switchLang;
+
+      document.getElementById("mob-services").textContent = t.nav.services;
+      document.getElementById("mob-menu").textContent = t.nav.menu;
+      document.getElementById("mob-contact").textContent = t.nav.contact;
+      document.getElementById("mob-switch").textContent = t.nav.switchLang;
+
+      /* Hero */
+      document.getElementById("hero-title").textContent = t.hero.title;
+      document.getElementById("hero-subtitle").textContent = t.hero.subtitle;
+      const heroCta = document.getElementById("hero-cta");
+      heroCta.textContent = t.hero.cta;
+      heroCta.href = pdfLinksByLang[currentLang];
+
+
+
+      var cta2 = document.getElementById("hero-cta2");
+      cta2.textContent = t.hero.ctaSecondary;
+      cta2.href = getWhatsAppUrl();
+
+      /* Services */
+      document.getElementById("services-title").textContent = t.services.title;
+      document.getElementById("services-subtitle").textContent = t.services.subtitle;
+
+      var grid = document.getElementById("services-grid");
+      grid.innerHTML = "";
+
+      t.services.items.forEach(function (s, i) {
+        var priceLine =
+          '<p class="desc" style="margin-top:10px">' +
+            '<strong>Playa La Ropa:</strong> $' + s.prices.laRopa + ' MXN · ' +
+            '<strong>Playa Blanca:</strong> $' + s.prices.playaBlanca + ' MXN' +
+            (s.prices.special2Plus
+              ? '<br/><strong>Tarifa especial (2+ personas):</strong> $' + s.prices.special2Plus + ' MXN p/ persona'
+              : '') +
+          '</p>';
+
+        grid.innerHTML +=
+          '<article class="service-card">' +
+            '<div class="img-wrap">' +
+              '<img src="' + (serviceImages[i] || serviceImages[0]) + '" alt="' + s.title + '" />' +
+              '<div class="dim"></div>' +
+            '</div>' +
+            '<div class="body">' +
+              '<div class="top-row">' +
+                '<h3>' + s.title + '</h3>' +
+                '<span class="duration">' + s.duration + '</span>' +
+              '</div>' +
+              '<p class="desc">' + s.description + '</p>' +
+              priceLine +
+            '</div>' +
+          '</article>';
+      });
+
+      /* Menu */
+      document.getElementById("menu-title").textContent = t.menuSection.title;
+      document.getElementById("menu-subtitle").textContent = t.menuSection.subtitle;
+
+      var menuGrid = document.getElementById("menu-grid");
+      menuGrid.innerHTML = "";
+
+      const pdfLinks = pdfLinksByLang[currentLang] || [];
+
+      t.menuSection.cards.forEach(function(c, i) {
+        const href = pdfLinks[i] || "#";
+        const disabled = href === "#";
+
+        menuGrid.innerHTML +=
+          '<div class="menu-card">' +
+            '<div>' +
+              '<div class="icon-box">' +
+                '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">' +
+                  '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>' +
+                '</svg>' +
+              '</div>' +
+              '<h3>' + c.title + '</h3>' +
+              '<p class="desc">' + c.description + '</p>' +
+            '</div>' +
+            '<a class="cta" href="' + href + '" ' + (disabled ? '' : 'target="_blank" rel="noopener noreferrer"') + '>' +
+              c.cta +
+              '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+                '<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>' +
+              '</svg>' +
+            '</a>' +
+          '</div>';
+      });
+
+      /* Footer */
+      document.getElementById("footer-tagline").textContent = t.footer.tagline;
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
+      document.getElementById("footer-rights").textContent = t.footer.rights;
+
+      /* WhatsApp button */
+      document.getElementById("whatsapp-btn").href = getWhatsAppUrl();
+    }
+
+    // Optional: ensure site shows correct language if you want auto-start
+    // selectLanguage("es");
+  </script>
+</body>
+</html>
